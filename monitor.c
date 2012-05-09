@@ -3739,8 +3739,8 @@ static const mon_cmd_t *monitor_parse_command(Monitor *mon,
         switch(c) {
         case 'F':
         case 'B':
-        case 'q':
-        case 'Q':
+        case 'x':
+        case 'X':
         case 's':
             {
                 int ret;
@@ -3767,8 +3767,8 @@ static const mon_cmd_t *monitor_parse_command(Monitor *mon,
                         break;
     		// adding parsing for custom commands @author:Alvaro
     		    case 'x':
-                    	monitor_printf(mon, "%s: dev bus path expected\n", cmdname);
-                    	brak;
+               		monitor_printf(mon, "%s: dev bus path expected\n", cmdname);
+                   	break;
                     case 'X':
                     	monitor_printf(mon, "%s: dev bus path expected\n", cmdname);
                     	break;
