@@ -302,6 +302,28 @@ Notes:
 
 EQMP
 
+ {
+
+        .name       = "device_show",
+        .args_type  = "path:X",
+        .params     = "device [-f]",
+        .help       = "show device state (specify -f for full buffer dumping)",
+        .user_print = device_user_print,
+        .mhandler.cmd_new = do_device_show,
+    },
+
+SQMP
+device_show
+----------
+
+Show a device:
+
+Arguments:
+
+-
+
+EQMP
+
     {
         .name       = "device_del",
         .args_type  = "id:s",
