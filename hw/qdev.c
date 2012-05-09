@@ -29,6 +29,7 @@
 #include "qdev.h"
 #include "sysemu.h"
 #include "monitor.h"
+#include "qjson.h"
 
 static int qdev_hotplug = 0;
 static bool qdev_hot_added = false;
@@ -898,6 +899,13 @@ void do_info_qdm(Monitor *mon)
         qdev_print_devinfo(info);
     }
 }
+
+int do_device_show(Monitor *mon, const QDict *qdict, QObject **ret_data){
+//TODO
+
+return -1;
+}
+
 
 int do_device_add(Monitor *mon, const QDict *qdict, QObject **ret_data)
 {

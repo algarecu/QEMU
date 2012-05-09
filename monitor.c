@@ -113,6 +113,7 @@ typedef struct MonitorCompletionData MonitorCompletionData;
 struct MonitorCompletionData {
     Monitor *mon;
     void (*user_print)(Monitor *mon, const QObject *data);
+const char *user_args_type;
 };
 
 typedef struct mon_cmd_t {
@@ -346,6 +347,10 @@ static void monitor_user_noop(Monitor *mon, const QObject *data) { }
 static inline int handler_is_qobject(const mon_cmd_t *cmd)
 {
     return cmd->user_print != NULL;
+}
+
+static inline bool monitor_cmd_user_only(const mon_cmd_t *cmd){
+    return (cmd->flags & MONITOR_CMD_USER_ONLY);
 }
 
 static inline bool handler_is_async(const mon_cmd_t *cmd)

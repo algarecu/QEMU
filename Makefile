@@ -157,14 +157,15 @@ qemu-io$(EXESUF): qemu-io.o cmd.o $(tools-obj-y) $(block-obj-y)
 qemu-img-cmds.h: $(SRC_PATH)/qemu-img-cmds.hx
 	$(call quiet-command,sh $(SRC_PATH)/scripts/hxtool -h < $< > $@,"  GEN   $@")
 
-check-qint.o check-qstring.o check-qdict.o check-qlist.o check-qfloat.o check-qjson.o test-coroutine.o: $(GENERATED_HEADERS)
+check-qint.o check-qstring.o check-qdict.o check-qlist.o check-qfloat.o check-qjson.o: $(GENERATED_HEADERS)
 
 check-qint: check-qint.o qint.o $(tools-obj-y)
 check-qstring: check-qstring.o qstring.o $(tools-obj-y)
 check-qdict: check-qdict.o qdict.o qfloat.o qint.o qstring.o qbool.o qlist.o $(tools-obj-y)
 check-qlist: check-qlist.o qlist.o qint.o $(tools-obj-y)
 check-qfloat: check-qfloat.o qfloat.o $(tools-obj-y)
-check-qjson: check-qjson.o $(qobject-obj-y) $(tools-obj-y)
+check-qjson: check-qjson.o qfloat.o qint.o qdict.o qstring.o qlist.o qbool.o base64.o qjson.o qbuffer.o json-streamer.o json-lexer.o json-parser.o $(CHECK_PROG_DEPS)
+//check-qjson: check-qjson.o $(qobject-obj-y) $(tools-obj-y)
 test-coroutine: test-coroutine.o qemu-timer-common.o async.o $(coroutine-obj-y) $(tools-obj-y)
 
 $(qapi-obj-y): $(GENERATED_HEADERS)
